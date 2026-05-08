@@ -125,6 +125,13 @@
       return;
     }
 
+    if (typeof window.IntersectionObserver !== "function") {
+      revealItems.forEach(function (item) {
+        item.classList.add("is-visible");
+      });
+      return;
+    }
+
     var observer = new IntersectionObserver(
       function (entries, observerRef) {
         entries.forEach(function (entry) {
