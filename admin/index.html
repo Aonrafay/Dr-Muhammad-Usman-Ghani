@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Muhammad Usman Ghani admin dashboard for appointment management, patient communication, and clinic operations.">
+  <title>Dr. Muhammad Usman Ghani Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+  <section id="authOverlay" class="auth-overlay" aria-labelledby="authTitle" role="dialog" aria-modal="true">
+    <article class="auth-card">
+      <p class="eyebrow">Authorized Access</p>
+      <h2 id="authTitle">Admin Login</h2>
+      <p>Sign in to access Dr. Muhammad Usman Ghani administrative dashboard tools.</p>
+
+      <form id="authForm" class="auth-form" novalidate>
+        <label for="authEmail">Email</label>
+        <input id="authEmail" name="authEmail" type="email" autocomplete="username" required>
+
+        <label for="authPassword">Password</label>
+        <input id="authPassword" name="authPassword" type="password" autocomplete="current-password" required>
+
+        <button type="submit">Sign In</button>
+        <p id="authMessage" class="auth-message" role="status" aria-live="polite"></p>
+      </form>
+    </article>
+  </section>
+
+  <header class="admin-header">
+    <div class="container header-row">
+      <div>
+        <p class="eyebrow">Dr. Muhammad Usman Ghani Operations</p>
+        <h1>Admin Dashboard</h1>
+      </div>
+      <nav class="admin-nav" aria-label="Admin Navigation">
+        <a href="../frontend/index.html">Public Site</a>
+        <a href="../frontend/appointment.html">Bookings</a>
+        <a href="../frontend/contact.html">Contacts</a>
+        <button id="logoutBtn" type="button" class="logout-btn">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <section class="panel panel-hero">
+      <div>
+        <h2>Daily Schedule Snapshot</h2>
+        <p>Monitor appointments, patient communication, and service demand in one place.</p>
+      </div>
+      <div class="meta-badges">
+        <span class="meta-badge">Role: Practice Admin</span>
+        <span class="meta-badge">Today: <strong id="todayCount">0</strong> appointments</span>
+      </div>
+      <p class="note">
+        Initial setup credential from documentation: aonrafay@gmail.com / qaz123@.
+      </p>
+      <p id="syncStatus" class="note">Database sync status: Waiting for admin login.</p>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <p>Total Appointments</p>
+        <strong id="statTotal">0</strong>
+      </article>
+      <article class="stat-card">
+        <p>Pending</p>
+        <strong id="statPending">0</strong>
+      </article>
+      <article class="stat-card">
+        <p>Confirmed</p>
+        <strong id="statConfirmed">0</strong>
+      </article>
+      <article class="stat-card">
+        <p>Patient Messages</p>
+        <strong id="statMessages">0</strong>
+      </article>
+    </section>
+
+    <section class="layout-grid">
+      <article class="panel panel-table">
+        <div class="panel-head">
+          <h2>Upcoming Appointments</h2>
+          <p>Update status directly from this table.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Patient</th>
+                <th>Service</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentTableBody"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <aside class="panel panel-actions">
+        <h2>Quick Actions</h2>
+        <button id="seedDemo" type="button">Seed Demo Data</button>
+        <button id="clearDemo" type="button" class="danger">Clear Local Data</button>
+        <a class="action-link" href="../frontend/appointment.html">Create New Appointment</a>
+        <a class="action-link" href="../frontend/contact.html">Review Contact Form</a>
+      </aside>
+    </section>
+
+    <section class="layout-grid second-row">
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Service Demand</h2>
+          <p>Most requested treatments this cycle.</p>
+        </div>
+        <div id="serviceDemand" class="demand-list"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">
+          <h2>Recent Patient Messages</h2>
+          <p>Latest inquiries from the contact form.</p>
+        </div>
+        <div id="messageList" class="message-list"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="admin-footer">
+    <div class="container footer-row">
+      <span>Copyright <span id="year"></span> Dr. Muhammad Usman Ghani</span>
+      <span>Administrative access for authorized staff only</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
+

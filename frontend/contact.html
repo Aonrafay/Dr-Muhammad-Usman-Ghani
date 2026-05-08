@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Dr. Muhammad Usman Ghani for appointments, emergency support, and location details.">
+  <title>Contact | Dr. Muhammad Usman Ghani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="contact">
+  <div data-include="header"></div>
+
+  <main>
+    <section class="section">
+      <div class="container grid cols-2">
+        <article class="surface-soft" data-reveal>
+          <span class="badge">Reach Dr. Muhammad Usman Ghani Anytime</span>
+          <h1 class="section-title" style="margin-top: 1rem;">Contact and Location Information</h1>
+          <p class="section-lead">Our team is ready to answer treatment questions, scheduling requests, and urgent care concerns.</p>
+
+          <ul class="hours-list" style="margin-top: 1rem;">
+            <li><span>Main Phone</span><strong>03444884014</strong></li>
+            <li><span>Email</span><strong>drmusmang@gmail.com</strong></li>
+            <li><span>Emergency Line</span><strong>03444884014</strong></li>
+            <li><span>Address</span><strong>Sharif Medical and Dental College</strong></li>
+          </ul>
+
+          <h2 class="section-title" style="font-size:1.5rem; margin-top:1rem;">Clinic Hours</h2>
+          <ul class="hours-list" style="margin-top: 0.7rem;">
+            <li><span>Monday to Thursday</span><strong>9:00 AM - 7:00 PM</strong></li>
+            <li><span>Friday</span><strong>9:00 AM - 4:00 PM</strong></li>
+            <li><span>Saturday</span><strong>10:00 AM - 3:00 PM</strong></li>
+            <li><span>Sunday</span><strong>Emergency only</strong></li>
+          </ul>
+        </article>
+
+        <article class="form-shell" data-reveal data-stagger="1">
+          <h2 class="section-title" style="font-size:1.8rem; margin-bottom:0.8rem;">Send a Message</h2>
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input id="name" name="name" type="text" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input id="phone" name="phone" type="tel" placeholder="+92 3XX XXXXXXX" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" required>
+              </div>
+              <div class="form-group">
+                <label for="topic">Topic</label>
+                <select id="topic" name="topic">
+                  <option>General Inquiry</option>
+                  <option>Appointment Support</option>
+                  <option>Treatment Question</option>
+                  <option>Emergency Callback</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required placeholder="Tell us how we can help"></textarea>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+              <a class="btn btn-neutral" href="appointment.html">Book Instead</a>
+            </div>
+            <div id="contactResult" class="form-result" role="status" aria-live="polite"></div>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container grid cols-2">
+        <article class="surface-soft" data-reveal>
+          <h2 class="section-title">Find the Location</h2>
+          <p class="section-lead">Use the map below to plan your route to Sharif Medical and Dental College.</p>
+          <iframe
+            title="Sharif Medical and Dental College Location"
+            src="https://www.google.com/maps?q=Sharif+Medical+and+Dental+College&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            style="width:100%; height: 320px; border-radius: 0.95rem; margin-top: 1rem;"
+          ></iframe>
+        </article>
+
+        <article class="surface-soft" data-reveal data-stagger="1">
+          <h2 class="section-title">Before You Arrive</h2>
+          <ul class="timeline" style="margin-top: 1rem;">
+            <li>
+              <strong>1</strong>
+              <div>
+                <h3 style="margin:0 0 0.35rem; font-size:1.02rem;">Bring Prior Records</h3>
+                <p style="margin:0;">If available, bring past X-rays, prescriptions, or treatment summaries.</p>
+              </div>
+            </li>
+            <li>
+              <strong>2</strong>
+              <div>
+                <h3 style="margin:0 0 0.35rem; font-size:1.02rem;">Arrive Early</h3>
+                <p style="margin:0;">Arrive 10 minutes early for smooth registration and consultation prep.</p>
+              </div>
+            </li>
+            <li>
+              <strong>3</strong>
+              <div>
+                <h3 style="margin:0 0 0.35rem; font-size:1.02rem;">Emergency Symptoms</h3>
+                <p style="margin:0;">For facial swelling or severe pain, call emergency line before traveling.</p>
+              </div>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/supabase-config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
+

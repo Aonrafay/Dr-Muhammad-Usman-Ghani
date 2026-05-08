@@ -1,0 +1,49 @@
+SMILECARE DENTAL CLINIC
+New Patient Intake Form
+
+Date: ______________________
+
+1) Personal Information
+Full Name: __________________________________
+Date of Birth: _______________________________
+Phone Number: _______________________________
+Email Address: _______________________________
+Home Address: ________________________________
+
+2) Emergency Contact
+Contact Name: ________________________________
+Relationship: ________________________________
+Phone Number: _______________________________
+
+3) Medical Information
+Current Medical Conditions:
+________________________________________________
+________________________________________________
+
+Allergies (Medicine/Food/Latex):
+________________________________________________
+________________________________________________
+
+Current Medications:
+________________________________________________
+________________________________________________
+
+4) Dental History
+Reason for Today's Visit:
+________________________________________________
+
+Last Dental Visit Date:
+________________________________________________
+
+Any Recent Dental Pain or Sensitivity?
+________________________________________________
+
+5) Consent
+I confirm that the information provided is true to the best of my knowledge.
+
+Patient Signature: ____________________________
+Date: _______________________________________
+
+Staff Notes:
+________________________________________________
+________________________________________________
