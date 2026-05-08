@@ -16,6 +16,7 @@
   var realtimeChannel = null;
   var realtimeClient = null;
   var syncErrors = [];
+  var latestAppointments = [];
   var statusOptions = ["pending", "confirmed", "checked-in", "in-progress", "completed", "cancelled", "no-show"];
 
   var tableBody = document.getElementById("appointmentTableBody");
@@ -371,6 +372,8 @@
       return toSortableDateTime(a) - toSortableDateTime(b);
     });
 
+    latestAppointments = appointments.slice();
+
     renderStats(appointments, messages);
     renderAppointmentTable(appointments);
     renderServiceDemand(appointments);
@@ -512,6 +515,8 @@
   }
 
   async function updateAppointmentStatus(appointmentId, status) {
+    var appointmentRecord = findAppointmentById(appointmentId);
+    var previousStatus = appointmentRecord ? appointmentRecord.status : "";
     var client = await getSupabaseClient();
     if (!client) {
       setSyncStatus("error", "Database sync status: Supabase client unavailable. Status was not updated.");
@@ -549,6 +554,18 @@
 
     await renderDashboard();
     setSyncStatus("success", "Database sync status: Appointment status updated to " + toTitleCase(status) + ".");
+
+    if (status === "confirmed" && previousStatus !== "confirmed") {
+      var emailResult = await sendConfirmationEmail(appointmentRecord);
+      if (!emailResult.ok) {
+        setSyncStatus("error", "Confirmation email failed: " + emailResult.message);
+        return;
+      }
+
+      if (appointmentRecord && appointmentRecord.email) {
+        setSyncStatus("success", "Confirmation email sent to " + appointmentRecord.email + ".");
+      }
+    }
   }
 
   async function seedDemoData() {
@@ -799,6 +816,57 @@
 
   function setRecords(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  function findAppointmentById(appointmentId) {
+    return (
+      latestAppointments.find(function (item) {
+        return item.id === appointmentId;
+      }) || null
+    );
+  }
+
+  async function sendConfirmationEmail(appointment) {
+    if (!appointment || !appointment.email) {
+      return { ok: false, message: "Patient email is missing." };
+    }
+
+    var payload = {
+      email: appointment.email,
+      name: appointment.fullName || "Patient",
+      date: appointment.date || "",
+      time: appointment.time || "",
+      service: appointment.service || "Dental appointment",
+      confirmationCode: appointment.confirmationCode || ""
+    };
+
+    try {
+      var response = await fetch("/api/send-confirmation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      var data = null;
+      try {
+        data = await response.json();
+      } catch (error) {
+        data = null;
+      }
+
+      if (!response.ok || !data || data.ok !== true) {
+        return {
+          ok: false,
+          message: (data && data.error) ? data.error : "Email service returned an error."
+        };
+      }
+
+      return { ok: true };
+    } catch (error) {
+      return { ok: false, message: "Could not reach the email service." };
+    }
   }
 
   async function fetchAppointments() {
